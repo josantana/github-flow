@@ -9,6 +9,7 @@ export default {
     },
 
     async getGithubData({ commit }, username) {
+        commit('UPDATE_PROFILE', { github: null });
         const data = await this.$axios.$get(`/users/${username}`);
         if (data) commit('UPDATE_PROFILE', { github: data });
     },
