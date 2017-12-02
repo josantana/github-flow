@@ -1,7 +1,7 @@
 
 const state = {
     error: null,
-    profile: null,
+    profile: {},
 };
 
 export default state;

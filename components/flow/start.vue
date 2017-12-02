@@ -6,16 +6,19 @@
             v-model="firstName"
             label="First Name"
             @input="clearErrorMessagesOnInput"
+            :validated="isValid.firstName"
         />
         <smart-input type="text"
             v-model="lastName"
             label="Last Name"
             @input="clearErrorMessagesOnInput"
+            :validated="isValid.lastName"
         />
         <smart-input type="text"
             v-model="githubUsername"
             label="Github Username"
             @input="validateGithubUsername"
+            :validated="isValid.githubUsername"
         />
     </div>
 
@@ -23,6 +26,7 @@
 <script>
 
     import { mapActions } from 'vuex';
+    import * as validate from '~/assets/scripts/validate';
     import SmartInput from '~/components/utils/smart-input.vue';
 
     export default {
@@ -32,13 +36,22 @@
         },
         data() {
             return {
-                delay: 750,
+                delay: 500,
                 error: null,
                 firstName: null,
                 githubUsername: null,
                 lastName: null,
                 timeout: null,
             };
+        },
+        computed: {
+            isValid() {
+                return {
+                    firstName: validate.name(this.firstName),
+                    lastName: validate.name(this.lastName),
+                    githubUsername: this.$store.state.profile && this.$store.state.profile.github,
+                };
+            },
         },
         methods: {
             clearErrorMessagesOnInput() {
