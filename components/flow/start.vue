@@ -15,13 +15,14 @@
         <smart-input type="text"
             v-model="githubUsername"
             label="Github Username"
-            @input="clearErrorMessagesOnInput"
+            @input="validateGithubUsername"
         />
     </div>
 
 </template>
 <script>
 
+    import { mapActions } from 'vuex';
     import SmartInput from '~/components/utils/smart-input.vue';
 
     export default {
@@ -31,16 +32,32 @@
         },
         data() {
             return {
+                delay: 750,
                 error: null,
                 firstName: null,
                 githubUsername: null,
                 lastName: null,
+                timeout: null,
             };
         },
         methods: {
             clearErrorMessagesOnInput() {
                 this.error = null;
             },
+            debounce() {
+                clearTimeout(this.timeout);
+                this.timeout = setTimeout(async () => {
+                    await this.getGithubData(this.githubUsername);
+                }, this.delay);
+            },
+            validateGithubUsername() {
+                this.clearErrorMessagesOnInput();
+                this.debounce();
+            },
+            ...mapActions([
+                'getGithubData',
+                'updateProfile',
+            ]),
         },
     };
 

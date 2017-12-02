@@ -12,6 +12,12 @@ module.exports = {
         ],
     },
     loading: { color: '#3B8070' },
+    modules: [
+        ['@nuxtjs/axios', {
+            baseURL: 'https://api.github.com',
+            credentials: false,
+        }],
+    ],
     build: {
         extend(config, ctx) {
             if (ctx.dev && ctx.isClient) {
