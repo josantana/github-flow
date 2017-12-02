@@ -3,25 +3,6 @@
 
     <div class="FlowStart">
         <avatar :source="image" />
-        <div class="u-layout-auto-vertical">
-            <div class="u-flex">
-                <smart-input type="text"
-                    v-model="firstName"
-                    label="First Name"
-                    @input="clearErrorMessagesOnInput"
-                    :validated="isValid.firstName"
-                />
-            </div>
-            <div class="u-div"></div>
-            <div class="u-flex">
-                <smart-input type="text"
-                    v-model="lastName"
-                    label="Last Name"
-                    @input="clearErrorMessagesOnInput"
-                    :validated="isValid.lastName"
-                />
-            </div>
-        </div>
         <smart-input type="text"
             v-model="githubUsername"
             label="Github Username"
@@ -34,7 +15,6 @@
 <script>
 
     import { mapActions } from 'vuex';
-    import * as validate from '~/assets/scripts/validate';
     import Avatar from '~/components/avatar.vue';
     import SmartInput from '~/components/utils/smart-input.vue';
 
@@ -60,8 +40,6 @@
             },
             isValid() {
                 return {
-                    firstName: validate.name(this.firstName),
-                    lastName: validate.name(this.lastName),
                     githubUsername: this.$store.state.profile && this.$store.state.profile.github,
                 };
             },
@@ -93,9 +71,7 @@
 <style scoped lang="scss">
 
     @import '~assets/scss/variables';
-    
-    .u-div {
-        width: 3px;
-    }
+
+    // ...
 
 </style>
