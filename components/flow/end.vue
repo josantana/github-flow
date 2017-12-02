@@ -1,40 +1,37 @@
 
 <template>
 
-    <div class="FlowStart">
-        <smart-input type="text"
-            v-model="firstName"
-            label="First Name"
+    <div class="FlowEnd">
+        <smart-input type="email"
+            v-model="email"
+            label="E-mail"
             @input="clearErrorMessagesOnInput"
         />
-        <smart-input type="text"
-            v-model="lastName"
-            label="Last Name"
+        <check-input id="agreement"
+            v-model="agreement"
             @input="clearErrorMessagesOnInput"
-        />
-        <smart-input type="text"
-            v-model="githubUsername"
-            label="Github Username"
-            @input="clearErrorMessagesOnInput"
-        />
+        >
+            I agree to the <a href="#">terms of service</a>
+        </check-input>
     </div>
 
 </template>
 <script>
 
+    import CheckInput from '~/components/utils/check-input.vue';
     import SmartInput from '~/components/utils/smart-input.vue';
 
     export default {
-        name: 'flow-start',
+        name: 'flow-end',
         components: {
+            CheckInput,
             SmartInput,
         },
         data() {
             return {
+                agreement: false,
+                email: null,
                 error: null,
-                firstName: null,
-                githubUsername: null,
-                lastName: null,
             };
         },
         methods: {
