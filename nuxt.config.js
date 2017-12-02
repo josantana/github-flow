@@ -13,7 +13,7 @@ module.exports = {
     },
     loading: { color: '#3B8070' },
     build: {
-        extend (config, ctx) {
+        extend(config, ctx) {
             if (ctx.dev && ctx.isClient) {
                 config.module.rules.push({
                     enforce: 'pre',
@@ -22,6 +22,14 @@ module.exports = {
                     exclude: /(node_modules)/,
                 });
             }
+            // Overwrite default SVG rule
+            const urlLoader = config.module.rules.find(rule => rule.loader === 'url-loader');
+            urlLoader.test = /\.(png|jpe?g|gif)$/;
+            // Add SVG rule
+            config.module.rules.push({
+                test: /\.svg$/,
+                loader: 'svg-sprite-loader',
+            });
         },
     },
 };
