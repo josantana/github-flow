@@ -6,6 +6,7 @@
             v-model="email"
             label="E-mail"
             @input="clearErrorMessagesOnInput"
+            :validated="isValid.email"
         />
         <check-input id="agreement"
             v-model="agreement"
@@ -18,6 +19,8 @@
 </template>
 <script>
 
+    import { mapActions } from 'vuex';
+    import * as validate from '~/assets/scripts/validate';
     import CheckInput from '~/components/utils/check-input.vue';
     import SmartInput from '~/components/utils/smart-input.vue';
 
@@ -34,10 +37,20 @@
                 error: null,
             };
         },
+        computed: {
+            isValid() {
+                return {
+                    email: validate.email(this.email),
+                };
+            },
+        },
         methods: {
             clearErrorMessagesOnInput() {
                 this.error = null;
             },
+            ...mapActions([
+                'updateProfile',
+            ]),
         },
     };
 
