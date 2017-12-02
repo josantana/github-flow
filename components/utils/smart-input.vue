@@ -112,7 +112,9 @@
             top: 3px;
         }
 
-        &.is-focused.is-validated { color: $secondary-color; }
+        &.is-focused.is-validated {
+            color: $secondary-color;
+        }
     }
 
     .SmartInput-label,
@@ -127,7 +129,12 @@
         border-radius: 3px;
         font-size: 16px;
         padding: 22px 36px 6px 12px;
+        transition: border .1s $easing;
         width: 100%;
+
+        &:focus {
+            border-color: color($grey, 300);
+        }
     }
 
     .SmartInput-placeholder {
@@ -145,6 +152,8 @@
 
     .SmartInput-label,
     .SmartInput-placeholder,
-    .SmartInput-icon { pointer-events: none; }
+    .SmartInput-icon {
+        pointer-events: none;
+    }
 
 </style>
