@@ -8,8 +8,11 @@ export default {
         commit('SET_ERROR', model);
     },
 
+    async resetGithubData({ commit, state }) {
+        if (state.profile && state.profile.github) commit('UPDATE_PROFILE', { github: null });
+    },
+
     async getGithubData({ commit }, username) {
-        commit('UPDATE_PROFILE', { github: null });
         const data = await this.$axios.$get(`/users/${username}`);
         if (data) commit('UPDATE_PROFILE', { github: data });
     },

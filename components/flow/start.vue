@@ -2,18 +2,26 @@
 <template>
 
     <div class="FlowStart">
-        <smart-input type="text"
-            v-model="firstName"
-            label="First Name"
-            @input="clearErrorMessagesOnInput"
-            :validated="isValid.firstName"
-        />
-        <smart-input type="text"
-            v-model="lastName"
-            label="Last Name"
-            @input="clearErrorMessagesOnInput"
-            :validated="isValid.lastName"
-        />
+        <avatar :source="image" />
+        <div class="u-layout-auto-vertical">
+            <div class="u-flex">
+                <smart-input type="text"
+                    v-model="firstName"
+                    label="First Name"
+                    @input="clearErrorMessagesOnInput"
+                    :validated="isValid.firstName"
+                />
+            </div>
+            <div class="u-div"></div>
+            <div class="u-flex">
+                <smart-input type="text"
+                    v-model="lastName"
+                    label="Last Name"
+                    @input="clearErrorMessagesOnInput"
+                    :validated="isValid.lastName"
+                />
+            </div>
+        </div>
         <smart-input type="text"
             v-model="githubUsername"
             label="Github Username"
@@ -27,11 +35,13 @@
 
     import { mapActions } from 'vuex';
     import * as validate from '~/assets/scripts/validate';
+    import Avatar from '~/components/avatar.vue';
     import SmartInput from '~/components/utils/smart-input.vue';
 
     export default {
         name: 'flow-start',
         components: {
+            Avatar,
             SmartInput,
         },
         data() {
@@ -45,6 +55,9 @@
             };
         },
         computed: {
+            image() {
+                return this.$store.state.profile && this.$store.state.profile.github && this.$store.state.profile.github.avatar_url;
+            },
             isValid() {
                 return {
                     firstName: validate.name(this.firstName),
@@ -65,10 +78,12 @@
             },
             validateGithubUsername() {
                 this.clearErrorMessagesOnInput();
+                this.resetGithubData();
                 this.debounce();
             },
             ...mapActions([
                 'getGithubData',
+                'resetGithubData',
                 'updateProfile',
             ]),
         },
@@ -79,6 +94,8 @@
 
     @import '~assets/scss/variables';
     
-    // ...
+    .u-div {
+        width: 3px;
+    }
 
 </style>
