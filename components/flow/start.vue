@@ -2,37 +2,33 @@
 <template>
 
     <div class="FlowStart">
-        <smart-input type="text"
-            v-model="firstName"
-            label="First Name"
-            @input="clearErrorMessagesOnInput"
-            :validated="isValid.firstName"
-        />
-        <smart-input type="text"
-            v-model="lastName"
-            label="Last Name"
-            @input="clearErrorMessagesOnInput"
-            :validated="isValid.lastName"
-        />
+        <avatar :source="image" />
         <smart-input type="text"
             v-model="githubUsername"
             label="Github Username"
             @input="validateGithubUsername"
             :validated="isValid.githubUsername"
         />
+        <div class="FlowProcess-actions">
+            <button class="u-primaryButton" @click="nextStep">Confirm</button>
+            <error-tooltip :message="error" @dismissError="clearErrorMessagesOnInput" />
+        </div>
     </div>
 
 </template>
 <script>
 
     import { mapActions } from 'vuex';
-    import * as validate from '~/assets/scripts/validate';
+    import Avatar from '~/components/avatar.vue';
     import SmartInput from '~/components/utils/smart-input.vue';
+    import ErrorTooltip from '~/components/utils/error-tooltip.vue';
 
     export default {
         name: 'flow-start',
         components: {
+            Avatar,
             SmartInput,
+            ErrorTooltip,
         },
         data() {
             return {
@@ -45,10 +41,11 @@
             };
         },
         computed: {
+            image() {
+                return this.$store.state.profile && this.$store.state.profile.github && this.$store.state.profile.github.avatar_url;
+            },
             isValid() {
                 return {
-                    firstName: validate.name(this.firstName),
-                    lastName: validate.name(this.lastName),
                     githubUsername: this.$store.state.profile && this.$store.state.profile.github,
                 };
             },
@@ -65,10 +62,19 @@
             },
             validateGithubUsername() {
                 this.clearErrorMessagesOnInput();
+                this.resetGithubData();
                 this.debounce();
+            },
+            nextStep() {
+                if (!this.isValid.githubUsername) {
+                    this.error = 'A Github account is mandatory.';
+                    return false;
+                }
+                return this.$emit('updateStep', 2);
             },
             ...mapActions([
                 'getGithubData',
+                'resetGithubData',
                 'updateProfile',
             ]),
         },
@@ -78,7 +84,5 @@
 <style scoped lang="scss">
 
     @import '~assets/scss/variables';
-    
-    // ...
 
 </style>

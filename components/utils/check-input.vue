@@ -23,14 +23,14 @@
 </template>
 <script>
 
-    import icon from '~/components/utils/icon';
+    import Icon from '~/components/utils/icon';
     import checkIcon from '~/static/vectors/icon-check.svg';
 
     export default {
         name: 'check-input',
         props: ['checked', 'disabled', 'id', 'name', 'value'],
         components: {
-            icon,
+            Icon,
         },
         data() {
             return {

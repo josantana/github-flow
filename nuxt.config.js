@@ -8,10 +8,10 @@ module.exports = {
             { hid: 'description', name: 'description', content: 'Nuxt.js project' },
         ],
         link: [
-            { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+            { rel: 'icon', type: 'image/png', href: '/images/favicon-homeday.png' },
         ],
     },
-    loading: { color: '#3B8070' },
+    loading: { color: '#5EC4E3' },
     modules: [
         ['@nuxtjs/axios', {
             baseURL: 'https://api.github.com',

@@ -39,14 +39,14 @@
 <script>
 
     import MaskedInput from 'vue-text-mask';
-    import icon from '~/components/utils/icon';
+    import Icon from '~/components/utils/icon';
     import checkIcon from '~/static/vectors/icon-check.svg';
 
     export default {
         name: 'smart-input',
         props: ['filter', 'label', 'mask', 'placeholder', 'type', 'validated', 'value'], // Filter is valid for single input, only
         components: {
-            icon,
+            Icon,
             MaskedInput,
         },
         data() {
@@ -93,6 +93,7 @@
     @import '~assets/scss/variables';
 
     .SmartInput {
+        margin-bottom: 6px;
         padding-bottom: 3px;
         position: relative;
         width: 100%;
