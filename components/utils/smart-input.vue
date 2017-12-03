@@ -93,6 +93,7 @@
     @import '~assets/scss/variables';
 
     .SmartInput {
+        margin-bottom: 6px;
         padding-bottom: 3px;
         position: relative;
         width: 100%;

@@ -39,6 +39,7 @@
             </div>
             <div class="u-flex">
                 <button class="u-primaryButton" @click="updateStep(3)">Complete</button>
+                <error-tooltip :message="error" @dismissError="clearErrorMessagesOnInput" />
             </div>
         </div>
     </div>
@@ -50,12 +51,14 @@
     import * as validate from '~/assets/scripts/validate';
     import CheckInput from '~/components/utils/check-input.vue';
     import SmartInput from '~/components/utils/smart-input.vue';
+    import ErrorTooltip from '~/components/utils/error-tooltip.vue';
 
     export default {
         name: 'flow-end',
         components: {
             CheckInput,
             SmartInput,
+            ErrorTooltip,
         },
         data() {
             return {
@@ -104,7 +107,23 @@
                 this.error = null;
             },
             updateStep(step) {
-                this.$emit('updateStep', step);
+                if (!this.isValid.firstName) {
+                    this.error = 'What\'s your name?';
+                    return false;
+                }
+                if (!this.isValid.lastName) {
+                    this.error = 'Your last name, please.';
+                    return false;
+                }
+                if (!this.isValid.email) {
+                    this.error = 'Invalid email.';
+                    return false;
+                }
+                if (!this.agreement) {
+                    this.error = 'You need to agree with our terms.';
+                    return false;
+                }
+                return this.$emit('updateStep', step);
             },
             ...mapActions([
                 'updateProfile',

@@ -44,6 +44,7 @@
 
     .FlowProcess {
         overflow: hidden;
+        padding-bottom: 24px;
         width: 100%;
     }
 

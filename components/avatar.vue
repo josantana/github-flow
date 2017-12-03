@@ -37,7 +37,7 @@
     @import '~assets/scss/variables';
 
     .Avatar {
-        margin: 0 auto;
+        margin: 0 auto 24px;
         perspective: 1000px;
 
         &.is-flipped .Avatar-container { transform: rotateY(180deg); }

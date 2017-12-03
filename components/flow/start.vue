@@ -10,6 +10,7 @@
             :validated="isValid.githubUsername"
         />
         <button class="u-primaryButton" @click="nextStep">Confirm</button>
+        <error-tooltip :message="error" @dismissError="clearErrorMessagesOnInput" />
     </div>
 
 </template>
@@ -18,12 +19,14 @@
     import { mapActions } from 'vuex';
     import Avatar from '~/components/avatar.vue';
     import SmartInput from '~/components/utils/smart-input.vue';
+    import ErrorTooltip from '~/components/utils/error-tooltip.vue';
 
     export default {
         name: 'flow-start',
         components: {
             Avatar,
             SmartInput,
+            ErrorTooltip,
         },
         data() {
             return {
@@ -61,7 +64,11 @@
                 this.debounce();
             },
             nextStep() {
-                this.$emit('updateStep', 2);
+                if (!this.isValid.githubUsername) {
+                    this.error = 'A Github account is mandatory.';
+                    return false;
+                }
+                return this.$emit('updateStep', 2);
             },
             ...mapActions([
                 'getGithubData',
