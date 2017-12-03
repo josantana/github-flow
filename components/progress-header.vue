@@ -10,13 +10,13 @@
 </template>
 <script>
 
-    import icon from '~/components/utils/icon';
+    import Icon from '~/components/utils/icon';
     import homedayLogo from '~/static/vectors/logo-homeday.svg';
 
     export default {
         name: 'progress-header',
         components: {
-            icon,
+            Icon,
         },
         data() {
             return {

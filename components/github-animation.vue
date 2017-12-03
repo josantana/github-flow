@@ -10,7 +10,7 @@
 </template>
 <script>
 
-    import icon from '~/components/utils/icon';
+    import Icon from '~/components/utils/icon';
     import bodyIcon from '~/static/vectors/icon-github-body.svg';
     import headIcon from '~/static/vectors/icon-github-head.svg';
     import tailIcon from '~/static/vectors/icon-github-tail.svg';
@@ -18,7 +18,7 @@
     export default {
         name: 'github-animation',
         components: {
-            icon,
+            Icon,
         },
         data() {
             return {
