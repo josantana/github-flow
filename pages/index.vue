@@ -37,7 +37,7 @@
     };
 
 </script>
-<style scoped lang="scss">
+<style lang="scss">
 
     @import '~assets/scss/colors';
     @import '~assets/scss/variables';
@@ -63,6 +63,10 @@
 
     .FlowProcess-step {
         padding: 0 32px;
+    }
+
+    .FlowProcess-actions {
+        margin-top: 12px;
     }
 
 </style>

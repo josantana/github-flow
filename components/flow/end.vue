@@ -33,7 +33,7 @@
         >
             I agree to the <a href="#">terms of service</a>
         </check-input>
-        <div class="u-layout-horizontal">
+        <div class="FlowProcess-actions u-layout-horizontal">
             <div class="u-flex">
                 <button class="u-secondaryButton" @click="updateStep(1)">Back</button>
             </div>
@@ -107,21 +107,23 @@
                 this.error = null;
             },
             updateStep(step) {
-                if (!this.isValid.firstName) {
-                    this.error = 'What\'s your name?';
-                    return false;
-                }
-                if (!this.isValid.lastName) {
-                    this.error = 'Your last name, please.';
-                    return false;
-                }
-                if (!this.isValid.email) {
-                    this.error = 'Invalid email.';
-                    return false;
-                }
-                if (!this.agreement) {
-                    this.error = 'You need to agree with our terms.';
-                    return false;
+                if (step > 2) {
+                    if (!this.isValid.firstName) {
+                        this.error = 'What\'s your name?';
+                        return false;
+                    }
+                    if (!this.isValid.lastName) {
+                        this.error = 'Your last name, please.';
+                        return false;
+                    }
+                    if (!this.isValid.email) {
+                        this.error = 'Invalid email.';
+                        return false;
+                    }
+                    if (!this.agreement) {
+                        this.error = 'Do you agree to our terms?';
+                        return false;
+                    }
                 }
                 return this.$emit('updateStep', step);
             },

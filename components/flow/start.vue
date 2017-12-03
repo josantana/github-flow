@@ -9,8 +9,10 @@
             @input="validateGithubUsername"
             :validated="isValid.githubUsername"
         />
-        <button class="u-primaryButton" @click="nextStep">Confirm</button>
-        <error-tooltip :message="error" @dismissError="clearErrorMessagesOnInput" />
+        <div class="FlowProcess-actions">
+            <button class="u-primaryButton" @click="nextStep">Confirm</button>
+            <error-tooltip :message="error" @dismissError="clearErrorMessagesOnInput" />
+        </div>
     </div>
 
 </template>
@@ -82,7 +84,5 @@
 <style scoped lang="scss">
 
     @import '~assets/scss/variables';
-
-    // ...
 
 </style>

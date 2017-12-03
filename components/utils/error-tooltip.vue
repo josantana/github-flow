@@ -71,7 +71,8 @@
     .ErrorTooltip-message {
         color: color($white);
         font-size: 12px;
-        padding: 0 26px 0 12px;
+        line-height: 14px;
+        padding: 3px 26px 3px 12px;
         text-align: left;
     }
 
