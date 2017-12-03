@@ -1,6 +1,6 @@
 {
     "name": "github-flow",
-    "version": "0.3.0",
+    "version": "0.4.0",
     "description": "Nuxt.js project",
     "author": "Jo Santana <josantana@jogalabs.com>",
     "private": true,
