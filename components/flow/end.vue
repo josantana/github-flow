@@ -1,7 +1,7 @@
 
 <template>
 
-    <div class="FlowEnd">
+    <div class="FlowEnd u-relative">
         <div class="u-layout-auto-vertical">
             <div class="u-flex">
                 <smart-input type="text"
@@ -33,15 +33,21 @@
         >
             I agree to the <a href="#">terms of service</a>
         </check-input>
-        <div class="FlowProcess-actions u-layout-horizontal">
-            <div class="u-flex">
-                <button class="u-secondaryButton" @click="updateStep(1)">Back</button>
+        <transition name="fade">
+            <div v-if="active" class="FlowProcess-actions u-layout-horizontal">
+                <div class="u-flex">
+                    <button class="u-secondaryButton" @click="updateStep(1)">Back</button>
+                </div>
+                <div class="u-flex">
+                    <button class="u-primaryButton" @click="updateStep(3)">Complete</button>
+                    <error-tooltip :message="error" @dismissError="clearErrorMessagesOnInput" />
+                </div>
             </div>
-            <div class="u-flex">
-                <button class="u-primaryButton" @click="updateStep(3)">Complete</button>
-                <error-tooltip :message="error" @dismissError="clearErrorMessagesOnInput" />
-            </div>
-        </div>
+            <div v-else class="FlowProcess-actionsEmptyState"></div>
+        </transition>
+        <transition name="fade">
+            <div v-if="!active" class="FlowEnd-overlay u-absolute u-fit"></div>
+        </transition>
     </div>
 
 </template>
@@ -55,6 +61,7 @@
 
     export default {
         name: 'flow-end',
+        props: ['active'],
         components: {
             CheckInput,
             SmartInput,
@@ -142,10 +149,26 @@
 </script>
 <style scoped lang="scss">
 
+    @import '~assets/scss/colors';
     @import '~assets/scss/variables';
 
     .u-div {
         width: 4px;
+    }
+
+    @media (min-width: 768px) {
+        .FlowEnd {
+            padding-top: 170px;
+        }
+
+        .FlowProcess-actionsEmptyState {
+            height: 60px;
+        }
+
+        .FlowEnd-overlay {
+            background: color($white);
+            opacity: .75;
+        }
     }
 
 </style>

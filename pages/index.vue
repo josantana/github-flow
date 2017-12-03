@@ -9,9 +9,9 @@
         <h3 class="u-center">Apply now</h3>
         <div :class="['FlowProcess', `FlowProcess-${step}`]">
             <div class="FlowProcess-mask u-layout-horizontal">
-                <flow-start :class="['FlowProcess-step', 'u-flex', { 'is-active': step === 1 }]" @updateStep="updateStep" />
-                <flow-end :class="['FlowProcess-step', 'u-flex', { 'is-active': step === 2 }]" @updateStep="updateStep" />
-                <flow-complete :active="step === 3" :class="['FlowProcess-step', 'u-flex', { 'is-active': step === 3 }]" @updateStep="updateStep" />
+                <flow-start :step="step" :active="step === 1" class="FlowProcess-step u-flex" @updateStep="updateStep" />
+                <flow-end :active="step === 2" class="FlowProcess-step u-flex" @updateStep="updateStep" />
+                <flow-complete :active="step === 3" :class="['FlowProcess-step', 'u-flex', { 'is-inactive': step !== 3 }]" @updateStep="updateStep" />
             </div>
         </div>
     </section>
@@ -64,13 +64,13 @@
 
     h3 {
         font-size: 16px;
-        padding: 24px 0 12px;
+        padding: 48px 0 12px;
         text-transform: uppercase;
     }
 
     .FlowProcess {
         overflow: hidden;
-        padding: 0 0 24px;
+        padding: 0 0 128px;
         width: 100%;
     }
 
@@ -112,7 +112,20 @@
     @media (min-width: 768px) {
         .FlowProcess {
             margin: 0 auto;
-            width: 50%;
+            max-width: 1140px;
+            padding: 36px 0 128px;
+        }
+
+        .FlowProcess-2 .FlowProcess-mask {
+            transform: translateX(0);
+        }
+
+        .FlowProcess-3 .FlowProcess-mask {
+            transform: translateX(0);
+        }
+
+        .FlowProcess-mask {
+            width: 100%;
         }
     }
 

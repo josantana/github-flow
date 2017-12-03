@@ -88,7 +88,7 @@
 
         .FlowTopics {
             margin: 0 auto;
-            max-width: 1024px;
+            max-width: 1140px;
 
             .FlowTopics-gridItem {
                 width: 25%;

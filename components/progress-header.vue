@@ -37,6 +37,7 @@
 
     .ProgressHeader-container {
         width: 100%;
+        z-index: 5;
     }
 
     .ProgressHeader {
@@ -68,7 +69,7 @@
     @media (min-width: 768px) {
         .ProgressHeader-wrapper {
             margin: 0 auto;
-            max-width: 1024px;
+            max-width: 1140px;
         }
     }
 

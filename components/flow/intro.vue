@@ -41,7 +41,7 @@
     }
 
     .FlowIntro {
-        padding: 36px; 
+        padding: 36px 36px 0; 
     }
 
     @media (min-width: 768px) {
@@ -51,7 +51,7 @@
 
         .FlowIntro {
             margin: 0 auto;
-            max-width: 1024px;
+            max-width: 1140px;
         }
     }
 
