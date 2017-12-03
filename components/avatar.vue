@@ -38,7 +38,9 @@
 
     .Avatar {
         margin: 0 auto 24px;
+        position: relative;
         perspective: 1000px;
+        z-index: 3;
 
         &.is-flipped .Avatar-container { transform: rotateY(180deg); }
     }

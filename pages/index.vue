@@ -1,19 +1,17 @@
 
 <template>
 
-    <section class="Page">
-        <picture>
-            <source srcset="/images/intro.webp" type="image/webp">
-            <source srcset="/images/intro.jpg" type="image/jpeg"> 
-            <img class="u-responsive" src="/images/intro.jpg" alt="Join our team">
-        </picture>
+    <section :class="['Page', isWebpSupported]">
+        <canvas class="Page-start u-responsive" height="1" width="1"></canvas>
         <flow-intro />
+        <h3 class="u-center">We offer you the following</h3>
+        <flow-topics />
         <h3 class="u-center">Apply now</h3>
         <div :class="['FlowProcess', `FlowProcess-${step}`]">
             <div class="FlowProcess-mask u-layout-horizontal">
-                <flow-start :class="['FlowProcess-step', 'u-flex', { 'is-active': step === 1 }]" @updateStep="updateStep" />
-                <flow-end :class="['FlowProcess-step', 'u-flex', { 'is-active': step === 2 }]" @updateStep="updateStep" />
-                <flow-complete :active="step === 3" :class="['FlowProcess-step', 'u-flex', { 'is-active': step === 3 }]" @updateStep="updateStep" />
+                <flow-start :step="step" :active="step === 1" class="FlowProcess-step u-flex" @updateStep="updateStep" />
+                <flow-end :active="step === 2" class="FlowProcess-step u-flex" @updateStep="updateStep" />
+                <flow-complete :active="step === 3" :class="['FlowProcess-step', 'u-flex', { 'is-inactive': step !== 3 }]" @updateStep="updateStep" />
             </div>
         </div>
     </section>
@@ -22,6 +20,7 @@
 <script>
 
     import FlowIntro from '~/components/flow/intro.vue';
+    import FlowTopics from '~/components/flow/topics.vue';
     import FlowStart from '~/components/flow/start.vue';
     import FlowEnd from '~/components/flow/end.vue';
     import FlowComplete from '~/components/flow/complete.vue';
@@ -29,6 +28,7 @@
     export default {
         components: {
             FlowIntro,
+            FlowTopics,
             FlowStart,
             FlowEnd,
             FlowComplete,
@@ -36,12 +36,19 @@
         data() {
             return {
                 step: 1,
+                isWebpSupported: null,
             };
         },
         methods: {
             updateStep(to) {
                 this.step = to;
             },
+        },
+        beforeMount() {
+            const webp = new Image();
+            webp.onload = () => { this.isWebpSupported = 'webp'; };
+            webp.onerror = () => { this.isWebpSupported = 'no-webp'; };
+            webp.src = 'data:image/webp;base64,UklGRjIAAABXRUJQVlA4ICYAAACyAgCdASoBAAEALmk0mk0iIiIiIgBoSygABc6zbAAA/v56QAAAAA==';
         },
     };
 
@@ -57,13 +64,13 @@
 
     h3 {
         font-size: 16px;
-        padding: 24px 0 12px;
+        padding: 48px 0 12px;
         text-transform: uppercase;
     }
 
     .FlowProcess {
         overflow: hidden;
-        padding-bottom: 0 36px 24px;
+        padding: 0 0 128px;
         width: 100%;
     }
 
@@ -86,6 +93,40 @@
 
     .FlowProcess-actions {
         margin-top: 12px;
+    }
+
+    .Page-start {
+        background: no-repeat center 45%;
+        background-size: cover;
+        max-height: 360px;
+    }
+
+    .no-webp .Page-start {
+        background-image: url('/images/intro.jpg');
+    }
+
+    .webp .Page-start {
+        background-image: url('/images/intro.webp');
+    }
+
+    @media (min-width: 768px) {
+        .FlowProcess {
+            margin: 0 auto;
+            max-width: 1140px;
+            padding: 36px 0 128px;
+        }
+
+        .FlowProcess-2 .FlowProcess-mask {
+            transform: translateX(0);
+        }
+
+        .FlowProcess-3 .FlowProcess-mask {
+            transform: translateX(0);
+        }
+
+        .FlowProcess-mask {
+            width: 100%;
+        }
     }
 
 </style>

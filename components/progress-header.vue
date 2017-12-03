@@ -1,9 +1,11 @@
 
 <template>
 
-    <div class="ProgressHeader-wrapper u-fixed">
+    <div class="ProgressHeader-container u-fixed">
         <div class="ProgressHeader">
-            <icon :glyph="logo.homeday" height="32px" />
+            <div class="ProgressHeader-wrapper">
+                <icon :glyph="logo.homeday" height="32px" />
+            </div>
         </div>
     </div>
 
@@ -33,8 +35,9 @@
     @import '~assets/scss/colors';
     @import '~assets/scss/variables';
 
-    .ProgressHeader-wrapper {
+    .ProgressHeader-container {
         width: 100%;
+        z-index: 5;
     }
 
     .ProgressHeader {
@@ -60,6 +63,13 @@
             left: auto;
             right: 10px;
             transform: skew(8deg) rotate(3deg);
+        }
+    }
+
+    @media (min-width: 768px) {
+        .ProgressHeader-wrapper {
+            margin: 0 auto;
+            max-width: 1140px;
         }
     }
 

@@ -55,11 +55,11 @@
     }
 
     .GithubAnimation-head {
-        animation: cupheadLikeHead 1s infinite;
+        animation: cupheadLikeHead .8s infinite .2s;
     }
 
     .GithubAnimation-tail {
-        animation: cupheadLikeTail 1s infinite;
+        animation: cupheadLikeTail .8s infinite .2s;
         opacity: .85;
     }
 
