@@ -9,7 +9,7 @@
             @input="validateGithubUsername"
             :validated="isValid.githubUsername"
         />
-        <button class="u-primaryButton">Confirm</button>
+        <button class="u-primaryButton" @click="nextStep">Confirm</button>
     </div>
 
 </template>
@@ -59,6 +59,9 @@
                 this.clearErrorMessagesOnInput();
                 this.resetGithubData();
                 this.debounce();
+            },
+            nextStep() {
+                this.$emit('updateStep', 2);
             },
             ...mapActions([
                 'getGithubData',

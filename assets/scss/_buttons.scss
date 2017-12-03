@@ -33,3 +33,10 @@ button {
     background-color: $tertiary-color;
     border-radius: 3px;
 }
+
+.u-secondaryButton {
+    @include button;
+    background-color: color($white);
+    color: color($grey, 400);
+    border-radius: 3px;
+}

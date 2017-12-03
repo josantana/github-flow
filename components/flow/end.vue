@@ -33,6 +33,14 @@
         >
             I agree to the <a href="#">terms of service</a>
         </check-input>
+        <div class="u-layout-horizontal">
+            <div class="u-flex">
+                <button class="u-secondaryButton" @click="updateStep(1)">Back</button>
+            </div>
+            <div class="u-flex">
+                <button class="u-primaryButton" @click="updateStep(3)">Complete</button>
+            </div>
+        </div>
     </div>
 
 </template>
@@ -94,6 +102,9 @@
         methods: {
             clearErrorMessagesOnInput() {
                 this.error = null;
+            },
+            updateStep(step) {
+                this.$emit('updateStep', step);
             },
             ...mapActions([
                 'updateProfile',
