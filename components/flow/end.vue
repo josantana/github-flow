@@ -106,7 +106,7 @@
             clearErrorMessagesOnInput() {
                 this.error = null;
             },
-            updateStep(step) {
+            async updateStep(step) {
                 if (step > 2) {
                     if (!this.isValid.firstName) {
                         this.error = 'What\'s your name?';
@@ -124,6 +124,12 @@
                         this.error = 'Do you agree to our terms?';
                         return false;
                     }
+                    await this.updateProfile({
+                        agreement: this.agreement,
+                        email: this.email,
+                        firstName: this.firstNameVal,
+                        lastName: this.lastNameVal,
+                    });
                 }
                 return this.$emit('updateStep', step);
             },
