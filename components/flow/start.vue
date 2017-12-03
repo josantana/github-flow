@@ -9,6 +9,7 @@
             @input="validateGithubUsername"
             :validated="isValid.githubUsername"
         />
+        <button class="u-primaryButton">Confirm</button>
     </div>
 
 </template>

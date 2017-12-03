@@ -46,13 +46,14 @@
     .Avatar,
     .Avatar-front,
     .Avatar-back {
-        height: 144px;
-        width: 144px;
+        height: 146px;
+        width: 146px;
     }
 
     .Avatar-front,
     .Avatar-back {
-        box-shadow: 0 0 3px rgba(color($black), .15);
+        border: solid 1px color($grey, 200);
+        box-shadow: 0 0 5px rgba(color($black), .05);
         padding: 10px;
 
         &,
