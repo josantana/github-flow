@@ -1,8 +1,10 @@
 
 <template>
 
-    <div class="ProgressHeader">
-        <icon :glyph="logo.homeday" height="32px" />
+    <div class="ProgressHeader-wrapper u-fixed">
+        <div class="ProgressHeader">
+            <icon :glyph="logo.homeday" height="32px" />
+        </div>
     </div>
 
 </template>
@@ -31,12 +33,15 @@
     @import '~assets/scss/colors';
     @import '~assets/scss/variables';
 
+    .ProgressHeader-wrapper {
+        width: 100%;
+    }
+
     .ProgressHeader {
         background: color($white);
         box-shadow: 0 1px 4px rgba(color($black), .1);
-        margin-bottom: 36px;
         padding: 12px 32px 16px;
-        position: relative;
+        width: 100%;
 
         &::before,
         &::after {

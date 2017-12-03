@@ -42,6 +42,10 @@
     @import '~assets/scss/colors';
     @import '~assets/scss/variables';
 
+    .PageContainer {
+        padding-top: 96px;
+    }
+
     .FlowProcess {
         overflow: hidden;
         padding-bottom: 24px;

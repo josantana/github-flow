@@ -77,7 +77,7 @@
                 get() {
                     let name = this.github && this.github.name;
                     name = name && name.split(' ')[0];
-                    return this.firstName || name;
+                    return this.firstName === '' ? '' : (this.firstName || name);
                 },
                 set(newVal) {
                     this.firstName = newVal;
@@ -88,7 +88,7 @@
                     let name = this.github && this.github.name;
                     name = name && name.split(' ');
                     name = (name && name.length > 1 && name[name.length - 1]) || null;
-                    return this.lastName || name;
+                    return this.lastName === '' ? '' : (this.lastName || name);
                 },
                 set(newVal) {
                     this.lastName = newVal;
