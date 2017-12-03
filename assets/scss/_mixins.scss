@@ -1,0 +1,10 @@
+
+@import 'colors';
+
+@mixin smooth-font {
+    font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
+    text-shadow: 1px 1px 1px rgba(color($black), .004);
+}

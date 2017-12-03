@@ -1,0 +1,13 @@
+
+@import 'variables';
+
+.fade-enter-active,
+.fade-leave-active { transition: all .4s $easing; }
+
+.fade-fast-enter-active,
+.fade-fast-leave-active { transition: all .1s $easing .05s; }
+
+.fade-enter,
+.fade-leave-to,
+.fade-fast-enter,
+.fade-fast-leave-to { opacity: 0; }
