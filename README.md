@@ -22,23 +22,23 @@ To make this section more dynamic, I've included four random topics, mixing icon
 
 **3. Workflow**
 
-A three step form. It starts asking the Github username. As the API delivers the user fullname, it made sense to move it before anything else.
+A three step form. It starts by asking the Github username. As the API delivers the user fullname, it made sense to move it before anything else.
 
-I came up with an animation upon Github's Octocat based on old 30s cartoons characters (inspired by [Cuphead](https://www.youtube.com/watch?v=ujkFlNkXMu4) game) when they are stuck in a position, waiting for something to happen. Simple, but friendly.
+I came up with an animation upon Github's Octocat based on old 30s cartoons characters (inspired by [Cuphead](https://www.youtube.com/watch?v=ujkFlNkXMu4) game). I think it gave a nice touch to this section.
 
 ![](https://i.imgur.com/eafFbzN.gif)
 
-There's a debounce method to fetch the data automatically, when the user stops writing. If it got something, a 3D flip animation reveils the real person's avatar and then, the user is allowed to go on.
+There's a debounce method to fetch the data automatically, that fires 750ms after the user stops writing its username. If it got something, a 3D flip animation reveils the user's avatar and then, he is allowed to go on.
 
 The first and last name are filled automatically based on Github's API response. The user is allowed to edit this information, though. It continues with a simple e-mail validation and a checkbox, as requested.
 
-> Every input field has inline validation. It's a feature of the `<smart-input>` component that I developed. It also has those nice floating labels, from Material Design. For this project, I designed a exclusive custom checkbox component, `<check-input>` that works like a charm.
+> Every input field has inline validation. It's a feature of the `<smart-input>` component that I developed. It also has those nice floating labels, from Material Design. For this project, I designed a exclusive custom checkbox component, `<check-input>`. Simple, but works like a charm.
 
 ![](https://i.imgur.com/OjAYsGH.png)
 
-For validation purposes, a tooltip shows up present the first error found. It fires when the user tries to go to the next step.
+For validation purposes, a tooltip presents the first error found. It fires when the user tries to go to the next step.
 
-If we got everything we need, a simple success message is presented at the final step.
+If we got everything we need, a success message is presented at the final step.
 
 > The workflow has different animations for desktop and mobile. On mobile, it moves like a carousel. On desktop, the avatar moves denoting which of the three steps is active.
 
